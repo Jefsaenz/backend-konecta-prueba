@@ -1,7 +1,7 @@
 import { sequelize } from '../database/database.js'
 import Products from '../models/Products.js'
 import Sales from '../models/Sales.js'
-import { Op } from 'sequelize';
+import { Op, QueryTypes } from 'sequelize';
 
 // creación de productos
 export const createProduct = async (req, res) => {
@@ -157,4 +157,26 @@ export const sellProduct = async (req, res) => {
     return res.status(500).json({ message: error.message })
   }
 };
+
+// tabla de la venta realizada.
+export const getSales = async (req, res) => {
+
+  try {
+    const allSales = await sequelize.query(`
+      SELECT v.id_sale, v.producto_id, v.quantity, p.product_name
+      FROM sales v
+      JOIN products p 
+      ON v.producto_id = p.id_product
+    `, {
+      type: QueryTypes.SELECT
+    })
+    console.log(allSales)
+    return res.json(allSales)
+
+  } catch (error) {
+
+    console.log('error al listar las ventas:', error)
+    return res.status(500).json({ message: error.message })
+  }
+}
 
