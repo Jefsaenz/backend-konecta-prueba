@@ -169,8 +169,7 @@ export const getSales = async (req, res) => {
       ON v.producto_id = p.id_product
     `, {
       type: QueryTypes.SELECT
-    })
-    console.log(allSales)
+    })    
     return res.json(allSales)
 
   } catch (error) {
