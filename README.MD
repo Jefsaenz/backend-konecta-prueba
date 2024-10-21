@@ -43,7 +43,7 @@ Este software permite a KONECTA gestionar el inventario de sus cafeterías de ma
 
 2. Navega al directorio del proyecto:
    ```bash
-   cd nombre_del_repositorio
+   cd backend-konecta-prueba
 
 3. Instala las dependencias:
    ```bash
